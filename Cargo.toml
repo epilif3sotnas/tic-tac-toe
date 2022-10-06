@@ -1,8 +1,14 @@
 [package]
+
 name = "tic-tac-toe"
 version = "0.1.0"
+authors = ["epilif3sotnas"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+description = "Tic Tac Toe game in Rust language."
+readme = "README.md"
+repository = "https://github.com/epilif3sotnas/tic-tac-toe"
+license = "MIT"
+license-file = "LICENSE"
+keywords = ["tic-tac-toe"]
+categories = ["games"]
+publish = false
