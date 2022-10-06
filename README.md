@@ -1,6 +1,6 @@
 # About
 
-Tic Tac Toe game in Python language.
+Tic Tac Toe game in Rust language.
 
 
 # Run
@@ -9,7 +9,7 @@ Commands to run it:
 
 ```
 cd {PATH_REPOSITORY};
-python3 tic_tac_toe;
+cargo run;
 ```
 
 
