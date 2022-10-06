@@ -1,8 +1,10 @@
+// internal
 mod settings;
 mod game;
 
 use settings::Settings::Settings;
 use game::Game::Game;
+
 
 fn main () {
     let settings = Settings {};

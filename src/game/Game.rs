@@ -1,3 +1,4 @@
+// rust
 use std::io::stdin;
 
 
@@ -8,6 +9,7 @@ pub struct Game<'a> {
 }
 
 impl Game<'_> {
+    
     pub fn new () -> Game<'static> {
         return Game {
             game: ["-"; 9],

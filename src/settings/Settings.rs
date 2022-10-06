@@ -1,9 +1,11 @@
+// rust
 use std::io::stdin;
 
 
 pub struct Settings;
 
 impl Settings {
+    
     pub fn initial_menu (&self) {
         println!("----- Initial Menu -----");
         println!("\t1 - Start Game.");
