@@ -9,6 +9,6 @@ readme = "README.md"
 repository = "https://github.com/epilif3sotnas/tic-tac-toe"
 license = "MIT"
 license-file = "LICENSE"
-keywords = ["tic-tac-toe"]
+keywords = ["tic-tac-toe", "game"]
 categories = ["games"]
 publish = false
