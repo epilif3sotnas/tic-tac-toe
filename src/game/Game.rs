@@ -3,14 +3,16 @@ use std::io::stdin;
 
 pub struct Game<'a> {
     game: [&'a str; 9],
-    player_play: u8
+    player_play: u8,
+    num_plays: u8
 }
 
 impl Game<'_> {
     pub fn new () -> Game<'static> {
         return Game {
             game: ["-"; 9],
-            player_play: 1
+            player_play: 1,
+            num_plays: 0
         };
     }
 
@@ -28,6 +30,7 @@ impl Game<'_> {
     }
 
     pub fn read_input (&mut self) {
+        println!("Player {}\nLocation: ", self.player_play);
         let mut input = String::new();
         stdin()
             .read_line(&mut input)
@@ -55,10 +58,12 @@ impl Game<'_> {
         match self.player_play {
             1 => {
                 self.game[position - 1] = "O";
+                self.num_plays += 1;
             }
 
             2 => {
                 self.game[position - 1] = "X";
+                self.num_plays += 1;
             }
 
             _ => {}
@@ -99,6 +104,16 @@ impl Game<'_> {
             }
         }
         return 0;
+    }
+
+    pub fn is_finished (&self) -> bool {
+        return if self.num_plays == 9 {
+            self.show_board();
+            println!("Game finished. Result is a draw");
+            true 
+        } else {
+            false
+        };
     }
         
     pub fn next_player (&mut self) {

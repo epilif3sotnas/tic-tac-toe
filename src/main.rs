@@ -18,9 +18,7 @@ fn main () {
                 game.show_board();
                 game.read_input();
 
-                let winner = game.check_winner();
-
-                if winner != 0 {
+                if game.check_winner() != 0 || game.is_finished() == true {
                     break;
                 }
 
