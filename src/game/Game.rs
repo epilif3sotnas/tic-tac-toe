@@ -68,7 +68,7 @@ impl Game<'_> {
                 self.num_plays += 1;
             }
 
-            other => {}
+            _ => {}
         }
     }
 
@@ -102,7 +102,7 @@ impl Game<'_> {
                     }
                 }
 
-                other => {}
+                _ => {}
             }
         }
         return 0;
@@ -128,7 +128,7 @@ impl Game<'_> {
                 self.player_play = 1;
             }
 
-            other => {}
+            _ => {}
         }
     }
 }
