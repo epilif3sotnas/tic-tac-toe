@@ -12,3 +12,7 @@ license-file = "LICENSE"
 keywords = ["tic-tac-toe", "game"]
 categories = ["games"]
 publish = false
+
+[[bin]]
+name = "tic-tac-toe"
+path="src/Main.rs"

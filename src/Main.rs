@@ -29,7 +29,7 @@ fn main () {
             }
         }
 
-        _ => {
+        other => {
             settings.clear_terminal();
             settings.end_menu();
         }
