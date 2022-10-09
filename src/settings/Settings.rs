@@ -33,4 +33,8 @@ impl Settings {
     pub fn clear_terminal (&self) {
         println!("{}[2J", 27 as char);
     }
+
+    pub fn invalid_option (&self) {
+        println!("Invalid option.\nChoose another.");
+    }
 }
