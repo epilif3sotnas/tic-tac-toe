@@ -29,10 +29,12 @@ impl Game<'_> {
 
         println!("\n\n\nO -> {}", "Player 1");
         println!("X -> {}", "Player 2");
+
+        println!("\n\nPlayer {} turn.", self.player_play);
     }
 
-    pub fn read_input (&mut self) {
-        println!("Player {}\nLocation: ", self.player_play);
+    pub fn read_input (&mut self) -> bool {
+        println!("\nLocation (between 1 and 9): ");
         let mut input = String::new();
         stdin()
             .read_line(&mut input)
@@ -44,7 +46,9 @@ impl Game<'_> {
                                     .expect("Failed to parse");
 
         if self.check_play(&position) {
-            self.update_game(&position)
+            return self.update_game(&position);
+        } else {
+            return false;
         }
     }
 
@@ -56,20 +60,26 @@ impl Game<'_> {
         }
     }
 
-    fn update_game (&mut self, &position: &usize) {
+    fn update_game (&mut self, &position: &usize) -> bool {
         match self.player_play {
             1 => {
                 self.game[position - 1] = "O";
                 self.num_plays += 1;
+                return true;
             }
 
             2 => {
                 self.game[position - 1] = "X";
                 self.num_plays += 1;
+                return true;
             }
 
-            _ => {}
+            _ => { false }
         }
+    }
+
+    pub fn invalid_option (&self) {
+        println!("\n\nInvalid position.\nChoose a position from 1 to 9 and empty.\n");
     }
 
     pub fn check_winner (&self) -> u8 {

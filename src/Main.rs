@@ -10,7 +10,7 @@ fn main () {
     let settings = Settings {};
     settings.initial_menu();
 
-    while true {
+    loop {
         let option = settings.read_input();
         match option {
             1 => {
@@ -18,7 +18,12 @@ fn main () {
     
                 loop {
                     game.show_board();
-                    game.read_input();
+                    let input_valid = game.read_input();
+
+                    if !input_valid {
+                        game.invalid_option();
+                        continue;
+                    }
     
                     if game.check_winner() != 0 || game.is_finished() == true {
                         break;
@@ -27,6 +32,8 @@ fn main () {
                     game.next_player();
                     settings.clear_terminal();
                 }
+
+                break;
             }
 
             2 => {
