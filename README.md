@@ -1,9 +1,9 @@
-# About
+## About
 
 Tic Tac Toe game in Rust language.
 
 
-# Run
+## Run
 
 Commands to run it:
 
@@ -13,6 +13,6 @@ cargo run;
 ```
 
 
-# License
+## License
 
 Licensed under the MIT license.
