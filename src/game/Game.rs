@@ -1,30 +1,43 @@
 // rust
 use std::io::stdin;
 
-
 pub struct Game<'a> {
     game: [&'a str; 9],
     player_play: u8,
-    num_plays: u8
+    num_plays: u8,
 }
 
 impl Game<'_> {
-    
-    pub fn new () -> Game<'static> {
+    pub fn new() -> Game<'static> {
         return Game {
             game: ["-"; 9],
             player_play: 1,
-            num_plays: 0
+            num_plays: 0,
         };
     }
 
-    pub fn show_board (&self) {
+    pub fn show_board(&self) {
         println!("+---+---+---+");
-        println!("| {} | {} | {} |", self.game.get(0).unwrap(), self.game.get(1).unwrap(), self.game.get(2).unwrap());
+        println!(
+            "| {} | {} | {} |",
+            self.game.get(0).unwrap(),
+            self.game.get(1).unwrap(),
+            self.game.get(2).unwrap()
+        );
         println!("+---+---+---+");
-        println!("| {} | {} | {} |", self.game.get(3).unwrap(), self.game.get(4).unwrap(), self.game.get(5).unwrap());
+        println!(
+            "| {} | {} | {} |",
+            self.game.get(3).unwrap(),
+            self.game.get(4).unwrap(),
+            self.game.get(5).unwrap()
+        );
         println!("+---+---+---+");
-        println!("| {} | {} | {} |", self.game.get(6).unwrap(), self.game.get(7).unwrap(), self.game.get(8).unwrap());
+        println!(
+            "| {} | {} | {} |",
+            self.game.get(6).unwrap(),
+            self.game.get(7).unwrap(),
+            self.game.get(8).unwrap()
+        );
         println!("+---+---+---+");
 
         println!("\n\n\nO -> {}", "Player 1");
@@ -33,17 +46,12 @@ impl Game<'_> {
         println!("\n\nPlayer {} turn.", self.player_play);
     }
 
-    pub fn read_input (&mut self) -> bool {
+    pub fn read_input(&mut self) -> bool {
         println!("\nLocation (between 1 and 9): ");
         let mut input = String::new();
-        stdin()
-            .read_line(&mut input)
-            .expect("Failed to read input");
+        stdin().read_line(&mut input).expect("Failed to read input");
 
-        let position: usize = input
-                                    .trim()
-                                    .parse()
-                                    .expect("Failed to parse");
+        let position: usize = input.trim().parse().expect("Failed to parse");
 
         if self.check_play(&position) {
             return self.update_game(&position);
@@ -52,7 +60,7 @@ impl Game<'_> {
         }
     }
 
-    fn check_play (&self, &position: &usize) -> bool {
+    fn check_play(&self, &position: &usize) -> bool {
         if position >= 1 && position <= 9 && self.game[position - 1] == "-" {
             return true;
         } else {
@@ -60,7 +68,7 @@ impl Game<'_> {
         }
     }
 
-    fn update_game (&mut self, &position: &usize) -> bool {
+    fn update_game(&mut self, &position: &usize) -> bool {
         match self.player_play {
             1 => {
                 self.game[position - 1] = "O";
@@ -74,15 +82,15 @@ impl Game<'_> {
                 return true;
             }
 
-            _ => { false }
+            _ => false,
         }
     }
 
-    pub fn invalid_option (&self) {
+    pub fn invalid_option(&self) {
         println!("\n\nInvalid position.\nChoose a position from 1 to 9 and empty.\n");
     }
 
-    pub fn check_winner (&self) -> u8 {
+    pub fn check_winner(&self) -> u8 {
         let winning_cases = [
             [0, 1, 2],
             [3, 4, 5],
@@ -97,7 +105,10 @@ impl Game<'_> {
         for win in winning_cases {
             match self.player_play {
                 1 => {
-                    if self.game[win[0]] == "O" && self.game[win[1]] == "O" && self.game[win[2]] == "O" {
+                    if self.game[win[0]] == "O"
+                        && self.game[win[1]] == "O"
+                        && self.game[win[2]] == "O"
+                    {
                         self.show_board();
                         println!("Player {} won", self.player_play);
                         return self.player_play;
@@ -105,7 +116,10 @@ impl Game<'_> {
                 }
 
                 2 => {
-                    if self.game[win[0]] == "X" && self.game[win[1]] == "X" && self.game[win[2]] == "X" {
+                    if self.game[win[0]] == "X"
+                        && self.game[win[1]] == "X"
+                        && self.game[win[2]] == "X"
+                    {
                         self.show_board();
                         println!("Player {} won", self.player_play);
                         return self.player_play;
@@ -118,17 +132,17 @@ impl Game<'_> {
         return 0;
     }
 
-    pub fn is_finished (&self) -> bool {
+    pub fn is_finished(&self) -> bool {
         return if self.num_plays == 9 {
             self.show_board();
             println!("Game finished. Result is a draw");
-            true 
+            true
         } else {
             false
         };
     }
-        
-    pub fn next_player (&mut self) {
+
+    pub fn next_player(&mut self) {
         match self.player_play {
             1 => {
                 self.player_play = 2;

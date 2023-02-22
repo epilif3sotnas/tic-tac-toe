@@ -1,12 +1,11 @@
 // internal
-mod settings;
 mod game;
+mod settings;
 
-use settings::Settings::Settings;
 use game::Game::Game;
+use settings::Settings::Settings;
 
-
-fn main () {
+fn main() {
     let settings = Settings {};
     settings.initial_menu();
 
@@ -15,7 +14,7 @@ fn main () {
         match option {
             1 => {
                 let mut game = Game::new();
-    
+
                 loop {
                     game.show_board();
                     let input_valid = game.read_input();
@@ -24,11 +23,11 @@ fn main () {
                         game.invalid_option();
                         continue;
                     }
-    
+
                     if game.check_winner() != 0 || game.is_finished() == true {
                         break;
                     }
-    
+
                     game.next_player();
                     settings.clear_terminal();
                 }
@@ -41,7 +40,7 @@ fn main () {
                 settings.end_menu();
                 break;
             }
-    
+
             _ => {
                 settings.invalid_option();
             }
